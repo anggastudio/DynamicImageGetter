@@ -3,14 +3,14 @@ Android Library to load image from url inside `<img>` tag and adjust the image s
 
 ## Thanks to:
 [rajeefmk](https://gist.github.com/rajeefmk) for his [PicassoImageGetter](https://gist.github.com/rajeefmk/beb1b79363c12041da7fd540bcf27765).
-I get the idea to retrieve the image from html using [Picasso](http://square.github.io/picasso/ "Picasso") and put it inside TextView in Android Studio. Then I added some code to adjust the image size dynamically.
+I got the idea to retrieve the image from html using [Picasso](http://square.github.io/picasso/ "Picasso") and put it inside TextView in Android Studio. Then I added some code to adjust the image size dynamically.
 
 ## Feature
 - Load remote urls from `<img>` tag when loaded inside android `<TextView/>`
 - Adjust the image size to :
--- as tall as line height (auto width)
--- as wide as `<TextView/>` width with padding (auto height)
--- or as is (without size adjustment)
+  - as tall as line height (auto width)
+  - as wide as `<TextView/>` width with padding (auto height)
+  - or as is (without size adjustment)
 
 ## Built With
 
