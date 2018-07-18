@@ -28,7 +28,7 @@ What licence?
 ## Download
 #### Gradle
 **Step 1.** Add it in your root build.gradle at the end of repositories:
-```
+```gradle
 allprojects {
   repositories {
     ...
@@ -38,14 +38,14 @@ allprojects {
 ```
 
 **Step 2.** Add the dependency
-```
+```gradle
 dependencies {
   implementation 'com.github.anggastudio:DynamicImageGetter:1.0'
 }
 ```
 #### Maven
 **Step 1.**
-```
+```xml
 <repositories>
   <repository>
     <id>jitpack.io</id>
@@ -55,7 +55,7 @@ dependencies {
 ```
 
 **Step 2.** Add the dependency
-```
+```xml
 <dependency>
   <groupId>com.github.anggastudio</groupId>
   <artifactId>DynamicImageGetter</artifactId>
@@ -65,19 +65,19 @@ dependencies {
 
 ## Usage
 - Load image with size as tall as line height (auto width)
-```
+```java
 TextView textHtml = findViewById(R.id.textHtml);
 DynamicImageGetter imageGetter = new DynamicImageGetter(getApplicationContext(), textHtml, DynamicImageGetter.INLINE_TEXT);
 textHtml.setText(Html.fromHtml(htmlString, imageGetter, null));
 ```
 - Load image with size as wide as `<TextView/>` width with padding (auto height)
-```
+```java
 TextView textHtml = findViewById(R.id.textHtml);
 DynamicImageGetter imageGetter = new DynamicImageGetter(getApplicationContext(), textHtml, DynamicImageGetter.FULL_WIDTH);
 textHtml.setText(Html.fromHtml(htmlString, imageGetter, null));
 ```
 - Load image with size or as is (without size adjustment)
-```
+```java
 TextView textHtml = findViewById(R.id.textHtml);
 DynamicImageGetter imageGetter = new DynamicImageGetter(getApplicationContext(), textHtml);
 textHtml.setText(Html.fromHtml(htmlString, imageGetter, null));
