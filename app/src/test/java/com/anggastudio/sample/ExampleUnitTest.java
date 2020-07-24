@@ -1,4 +1,4 @@
-package com.anggastudio.dynamicimagegettertester;
+package com.anggastudio.sample;
 
 import org.junit.Test;
 

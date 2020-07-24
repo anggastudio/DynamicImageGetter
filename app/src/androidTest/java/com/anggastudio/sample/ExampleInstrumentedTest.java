@@ -1,4 +1,4 @@
-package com.anggastudio.dynamicimagegettertester;
+package com.anggastudio.sample;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
