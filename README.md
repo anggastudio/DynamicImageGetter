@@ -66,7 +66,7 @@ dependencies {
 ## Usage
 - Load image with size as tall as line height (auto width)
 ```java
-String htmlString = DummyTextHtml.htmlString;
+        String htmlString = DummyTextHtml.htmlString;
         TextView textView = findViewById(R.id.textView);
         DynamicImageGetter.with(this)
                 .load(htmlString)
@@ -75,7 +75,7 @@ String htmlString = DummyTextHtml.htmlString;
 ```
 - Load image with size as wide as `<TextView/>` width with padding (auto height)
 ```java
-String htmlString = DummyTextHtml.htmlString;
+        String htmlString = DummyTextHtml.htmlString;
         TextView textView = findViewById(R.id.textView);
         DynamicImageGetter.with(this)
                 .load(htmlString)
@@ -84,7 +84,7 @@ String htmlString = DummyTextHtml.htmlString;
 ```
 - Load image with size or as is (without size adjustment)
 ```java
-String htmlString = DummyTextHtml.htmlString;
+        String htmlString = DummyTextHtml.htmlString;
         TextView textView = findViewById(R.id.textView);
         DynamicImageGetter.with(this)
                 .load(htmlString)
