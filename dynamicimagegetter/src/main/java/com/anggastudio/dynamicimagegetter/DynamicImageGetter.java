@@ -1,22 +1,19 @@
 package com.anggastudio.dynamicimagegetter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.Html;
+import android.text.Spanned;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
-import com.squareup.picasso.Target;
 
 public class DynamicImageGetter implements Html.ImageGetter {
     public static final int FULL_WIDTH = 1;
     public static final int INLINE_TEXT = 2;
+    private static DynamicImageGetter dynamicImageGetter;
     private TextView textView;
     private Picasso picasso;
     private Context mContext;
@@ -25,19 +22,17 @@ public class DynamicImageGetter implements Html.ImageGetter {
     private int imagePlaceholder;
     private boolean isImageErrorAvailable;
     private boolean isPlaceholderAvailable;
+    private String htmlString;
 
-    public DynamicImageGetter(Context mContext, @NonNull TextView textView, int imageMode) {
-        this.textView = textView;
-        this.mContext = mContext;
-        this.picasso = Picasso.get();
-        this.imageMode = imageMode;
-    }
-
-    public DynamicImageGetter(Context mContext, @NonNull TextView textView) {
-        this.textView = textView;
-        this.mContext = mContext;
+    public DynamicImageGetter(Context context) {
+        this.mContext = context;
         this.picasso = Picasso.get();
         this.imageMode = 0;
+    }
+
+    public static DynamicImageGetter with(Context context) {
+        dynamicImageGetter = new DynamicImageGetter(context);
+        return dynamicImageGetter;
     }
 
     public void setImageMode(int imageMode) {
@@ -71,5 +66,21 @@ public class DynamicImageGetter implements Html.ImageGetter {
         requestCreator.into(drawable);
 
         return drawable;
+    }
+
+    public DynamicImageGetter load(String htmlString) {
+        this.htmlString = htmlString;
+        return dynamicImageGetter;
+    }
+
+    public void into(TextView textView) {
+        this.textView = textView;
+        Spanned text = Html.fromHtml(htmlString, dynamicImageGetter, null);
+        textView.setText(text);
+    }
+
+    public DynamicImageGetter mode(int imageMode) {
+        this.imageMode = imageMode;
+        return dynamicImageGetter;
     }
 }
