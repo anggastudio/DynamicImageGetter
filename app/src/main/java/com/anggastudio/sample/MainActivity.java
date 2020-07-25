@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         String htmlString = DummyTextHtml.htmlString;
-
         TextView textView = findViewById(R.id.textView);
         DynamicImageGetter.with(this)
                 .load(htmlString)

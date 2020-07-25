@@ -40,7 +40,7 @@ allprojects {
 **Step 2.** Add the dependency
 ```gradle
 dependencies {
-  implementation 'com.github.anggastudio:DynamicImageGetter:1.0'
+  implementation 'com.github.anggastudio:DynamicImageGetter:1.5.0'
 }
 ```
 #### Maven
@@ -66,19 +66,27 @@ dependencies {
 ## Usage
 - Load image with size as tall as line height (auto width)
 ```java
-TextView textHtml = findViewById(R.id.textHtml);
-DynamicImageGetter imageGetter = new DynamicImageGetter(getApplicationContext(), textHtml, DynamicImageGetter.INLINE_TEXT);
-textHtml.setText(Html.fromHtml(htmlString, imageGetter, null));
+String htmlString = DummyTextHtml.htmlString;
+        TextView textView = findViewById(R.id.textView);
+        DynamicImageGetter.with(this)
+                .load(htmlString)
+                .mode(DynamicImageGetter.INLINE_TEXT)
+                .into(textView);
 ```
 - Load image with size as wide as `<TextView/>` width with padding (auto height)
 ```java
-TextView textHtml = findViewById(R.id.textHtml);
-DynamicImageGetter imageGetter = new DynamicImageGetter(getApplicationContext(), textHtml, DynamicImageGetter.FULL_WIDTH);
-textHtml.setText(Html.fromHtml(htmlString, imageGetter, null));
+String htmlString = DummyTextHtml.htmlString;
+        TextView textView = findViewById(R.id.textView);
+        DynamicImageGetter.with(this)
+                .load(htmlString)
+                .mode(DynamicImageGetter.FULL_WIDTH)
+                .into(textView);
 ```
 - Load image with size or as is (without size adjustment)
 ```java
-TextView textHtml = findViewById(R.id.textHtml);
-DynamicImageGetter imageGetter = new DynamicImageGetter(getApplicationContext(), textHtml);
-textHtml.setText(Html.fromHtml(htmlString, imageGetter, null));
+String htmlString = DummyTextHtml.htmlString;
+        TextView textView = findViewById(R.id.textView);
+        DynamicImageGetter.with(this)
+                .load(htmlString)
+                .into(textView);
 ```
