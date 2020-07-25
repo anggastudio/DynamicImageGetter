@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.textView);
         DynamicImageGetter.with(this)
                 .load(htmlString)
-                .mode(DynamicImageGetter.INLINE_TEXT)
+                .mode(DynamicImageGetter.FULL_WIDTH)
                 .into(textView);
     }
 }
