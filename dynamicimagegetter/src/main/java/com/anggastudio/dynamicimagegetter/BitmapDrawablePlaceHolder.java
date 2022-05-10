@@ -1,18 +1,19 @@
 package com.anggastudio.dynamicimagegetter;
 
+import static com.anggastudio.dynamicimagegetter.DynamicImageGetter.FULL_WIDTH;
+import static com.anggastudio.dynamicimagegetter.DynamicImageGetter.INLINE_TEXT;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-
-import static com.anggastudio.dynamicimagegetter.DynamicImageGetter.FULL_WIDTH;
-import static com.anggastudio.dynamicimagegetter.DynamicImageGetter.INLINE_TEXT;
 
 public class BitmapDrawablePlaceHolder extends BitmapDrawable implements Target {
 
@@ -21,7 +22,7 @@ public class BitmapDrawablePlaceHolder extends BitmapDrawable implements Target 
     private final int imageMode;
     protected Drawable drawable;
 
-    public BitmapDrawablePlaceHolder(Context context, TextView textView, int imageMode){
+    public BitmapDrawablePlaceHolder(Context context, TextView textView, int imageMode) {
         this.context = context;
         this.textView = textView;
         this.imageMode = imageMode;
@@ -43,7 +44,7 @@ public class BitmapDrawablePlaceHolder extends BitmapDrawable implements Target 
     }
 
     private void checkBounds() {
-        switch (imageMode){
+        switch (imageMode) {
             case FULL_WIDTH:
                 setFullTextViewWidth();
                 break;
@@ -54,7 +55,6 @@ public class BitmapDrawablePlaceHolder extends BitmapDrawable implements Target 
                 setDefaultBound();
                 break;
         }
-        textView.setText(textView.getText()); //refresh text
     }
 
     private void setFullTextViewWidth() {
@@ -64,7 +64,7 @@ public class BitmapDrawablePlaceHolder extends BitmapDrawable implements Target 
         int height = (int) ((float) width / defaultProportion);
         setBounds(0, 0, textView.getWidth(), height); //set to full width
         // fit in an image
-        drawable.setBounds(0,0, width, height);
+        drawable.setBounds(0, 0, width, height);
     }
 
     private void setInlineText() {
@@ -72,12 +72,12 @@ public class BitmapDrawablePlaceHolder extends BitmapDrawable implements Target 
         int height = textView.getLineHeight();
         int width = (int) ((float) height / defaultProportion);
         setBounds(0, 0, width, height);
-        drawable.setBounds(0,0, width, height);
+        drawable.setBounds(0, 0, width, height);
     }
 
     private void setDefaultBound() {
         setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-        drawable.setBounds(0,0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
     }
 
     //------------------------------------------------------------------//

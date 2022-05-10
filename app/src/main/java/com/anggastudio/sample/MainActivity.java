@@ -1,8 +1,9 @@
 package com.anggastudio.sample;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.anggastudio.dynamicimagegetter.DynamicImageGetter;
 
@@ -13,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String htmlString = DummyTextHtml.htmlString;
+        String htmlString = DummyTextHtml.htmlString1;
         TextView textView = findViewById(R.id.textView);
         DynamicImageGetter.with(this)
                 .load(htmlString)

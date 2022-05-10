@@ -1,10 +1,13 @@
 package com.anggastudio.dynamicimagegetter;
 
+import static androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY;
+
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
+import android.os.Build;
 import android.text.Html;
 import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -39,12 +42,12 @@ public class DynamicImageGetter implements Html.ImageGetter {
         this.imageMode = imageMode;
     }
 
-    public void setImageError(int imageError){
+    public void setImageError(int imageError) {
         this.imageError = imageError;
         this.isImageErrorAvailable = true;
     }
 
-    public void setImagePlaceholder(int imagePlaceholder){
+    public void setImagePlaceholder(int imagePlaceholder) {
         this.imagePlaceholder = imagePlaceholder;
         this.isPlaceholderAvailable = true;
     }
@@ -55,11 +58,11 @@ public class DynamicImageGetter implements Html.ImageGetter {
         BitmapDrawablePlaceHolder drawable = new BitmapDrawablePlaceHolder(mContext, textView, imageMode);
         RequestCreator requestCreator = picasso.load(source);
 
-        if(isImageErrorAvailable){
+        if (isImageErrorAvailable) {
             requestCreator.error(imageError);
         }
 
-        if(isPlaceholderAvailable){
+        if (isPlaceholderAvailable) {
             requestCreator.placeholder(imagePlaceholder);
         }
 
@@ -75,8 +78,15 @@ public class DynamicImageGetter implements Html.ImageGetter {
 
     public void into(TextView textView) {
         this.textView = textView;
-        Spanned text = Html.fromHtml(htmlString, dynamicImageGetter, null);
+        Spanned text;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            text = Html.fromHtml(htmlString, FROM_HTML_MODE_LEGACY, dynamicImageGetter, null);
+        } else {
+            text = Html.fromHtml(htmlString, dynamicImageGetter, null);
+        }
         textView.setText(text);
+        textView.setClickable(true);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     public DynamicImageGetter mode(int imageMode) {
