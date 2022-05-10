@@ -53,9 +53,11 @@ allprojects {
 ```
 
 **Step 2.** Add the dependency
+- cek jitpack version to make sure you use the latest
+[![](https://jitpack.io/v/anggastudio/DynamicImageGetter.svg)](https://jitpack.io/#anggastudio/DynamicImageGetter)
 ```gradle
 dependencies {
-  implementation 'com.github.anggastudio:DynamicImageGetter:1.5.0'
+  implementation 'com.github.anggastudio:DynamicImageGetter:2.0.0'
 }
 ```
 #### Maven
