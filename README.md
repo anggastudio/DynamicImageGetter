@@ -1,10 +1,20 @@
 <p align="center">
   <h1 align="center">DynamicImageGetter</h1>
-  <h4 align="center">Android Library to load image from url inside `<img>` tag and adjust the image size.</h4>
+  <h4 align="center">Android Library to load image from url inside img tag and adjust the image size.</h4>
 </p>
 
 <p align="center">
   <img src="https://images.unsplash.com/photo-1522219406764-db207f1f7640?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"/>
+</p>
+
+<p align="center">
+  <a href="https://jitpack.io/#anggastudio/DynamicImageGetter"><img src="https://img.shields.io/jitpack/v/github/anggastudio/DynamicImageGetter"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"></a>
+  <a href="https://github.com/anggastudio/DynamicImageGetter/pulls"><img alt="Pull request" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat"></a>
+  <a href="https://github.com/anggastudio/DynamicImageGetter/graphs/contributors"><img src="https://img.shields.io/github/contributors/anggastudio/DynamicImageGetter"></a>
+  <a href="https://twitter.com/angga_studio"><img alt="Twitter" src="https://img.shields.io/twitter/follow/angga_studio"></a>
+  <a href="https://github.com/anggastudio"><img alt="Github" src="https://img.shields.io/github/followers/anggastudio?label=follow&style=social"></a>
+  <p align="center">Android library for bluetooth thermal printer.<br>Tested to many 2 inch bluetooth thermal printers.</p>
 </p>
 
 ## Thanks to:
