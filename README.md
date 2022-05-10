@@ -14,7 +14,6 @@
   <a href="https://github.com/anggastudio/DynamicImageGetter/graphs/contributors"><img src="https://img.shields.io/github/contributors/anggastudio/DynamicImageGetter"></a>
   <a href="https://twitter.com/angga_studio"><img alt="Twitter" src="https://img.shields.io/twitter/follow/angga_studio"></a>
   <a href="https://github.com/anggastudio"><img alt="Github" src="https://img.shields.io/github/followers/anggastudio?label=follow&style=social"></a>
-  <p align="center">Android library for bluetooth thermal printer.<br>Tested to many 2 inch bluetooth thermal printers.</p>
 </p>
 
 ## Thanks to:
