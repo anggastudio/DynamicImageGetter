@@ -95,7 +95,8 @@ public class DynamicImageGetter implements Html.ImageGetter {
 
     private File getFileFromImageBase64(String imageBase64) {
         byte[] decodedString = Base64.decode(imageBase64.getBytes(StandardCharsets.UTF_8), Base64.DEFAULT);
-        File file = new File(mContext.getCacheDir(), "filename");
+        String fileName = "temp_image_" + System.currentTimeMillis();
+        File file = new File(mContext.getCacheDir(), fileName);
         try {
             file.createNewFile();
             FileOutputStream fos = new FileOutputStream(file);
