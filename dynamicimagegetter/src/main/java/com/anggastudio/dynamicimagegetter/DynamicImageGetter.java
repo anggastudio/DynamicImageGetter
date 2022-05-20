@@ -8,10 +8,18 @@ import android.os.Build;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
+import android.util.Base64;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 public class DynamicImageGetter implements Html.ImageGetter {
     public static final int FULL_WIDTH = 1;
@@ -38,37 +46,66 @@ public class DynamicImageGetter implements Html.ImageGetter {
         return dynamicImageGetter;
     }
 
-    public void setImageMode(int imageMode) {
-        this.imageMode = imageMode;
-    }
-
-    public void setImageError(int imageError) {
+    public DynamicImageGetter setImageError(int imageError) {
         this.imageError = imageError;
         this.isImageErrorAvailable = true;
+        return dynamicImageGetter;
     }
 
-    public void setImagePlaceholder(int imagePlaceholder) {
+    public DynamicImageGetter setImagePlaceholder(int imagePlaceholder) {
         this.imagePlaceholder = imagePlaceholder;
         this.isPlaceholderAvailable = true;
+        return dynamicImageGetter;
     }
 
     @Override
     public Drawable getDrawable(String source) {
-
         BitmapDrawablePlaceHolder drawable = new BitmapDrawablePlaceHolder(mContext, textView, imageMode);
-        RequestCreator requestCreator = picasso.load(source);
-
-        if (isImageErrorAvailable) {
-            requestCreator.error(imageError);
+        RequestCreator requestCreator = getRequestCreator(source);
+        if (requestCreator != null) {
+            if (isImageErrorAvailable) {
+                requestCreator.error(imageError);
+            }
+            if (isPlaceholderAvailable) {
+                requestCreator.placeholder(imagePlaceholder);
+            }
+            requestCreator.into(drawable);
         }
-
-        if (isPlaceholderAvailable) {
-            requestCreator.placeholder(imagePlaceholder);
-        }
-
-        requestCreator.into(drawable);
-
         return drawable;
+    }
+
+    private RequestCreator getRequestCreator(String source) {
+        RequestCreator requestCreator = null;
+        if (source.toLowerCase(Locale.ROOT).contains("data:image")) {
+            // source is base64
+            try {
+                source = source.split(",")[1];
+                File imageFile = getFileFromImageBase64(source);
+                requestCreator = picasso.load(imageFile);
+            } catch (Exception e) {
+                // get exception
+                Log.e("FAILED LOAD IMAGE", e.getLocalizedMessage());
+            }
+        } else {
+            // source is url
+            requestCreator = picasso.load(source);
+        }
+        return requestCreator;
+    }
+
+    private File getFileFromImageBase64(String imageBase64) {
+        byte[] decodedString = Base64.decode(imageBase64.getBytes(StandardCharsets.UTF_8), Base64.DEFAULT);
+        File file = new File(mContext.getCacheDir(), "filename");
+        try {
+            file.createNewFile();
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(decodedString);
+            fos.flush();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return file;
     }
 
     public DynamicImageGetter load(String htmlString) {
